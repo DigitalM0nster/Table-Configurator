@@ -4,23 +4,11 @@ body {
 	place-items: center;
 	min-width: 320px;
 	min-height: 100vh;
-	background: linear-gradient(180deg, #000000, #001f3f, #000000);
-	animation: gradient-animation 10s ease infinite;
-	overscroll-behavior: contain; /* Предотвращает эффект "bounce" */
+	background: #05080a;
+	overscroll-behavior: contain;
 	height: 100%;
 	font-family: Jost;
 	overflow: hidden; /* Убираем скроллинг */
-}
-
-/* Анимация для плавного перехода */
-@keyframes gradient-animation {
-	0%,
-	100% {
-		background: linear-gradient(180deg, #000000, #001f3f, #000000);
-	}
-	50% {
-		background: linear-gradient(180deg, #001f3f, #000000, #001f3f);
-	}
 }
 
 div {

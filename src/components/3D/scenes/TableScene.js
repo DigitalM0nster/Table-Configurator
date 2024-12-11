@@ -39,7 +39,7 @@ export default class TableScene {
 		this.controls.dampingFactor = 0.05;
 
 		// Ограничение вращения камеры
-		this.controls.maxPolarAngle = Math.PI / 2.2; // Максимальный угол для предотвращения обзора снизу
+		this.controls.maxPolarAngle = Math.PI / 1.8; // Максимальный угол для предотвращения обзора снизу
 		this.controls.minPolarAngle = Math.PI / 4; // Минимальный угол для предотвращения взгляда сверху
 
 		// Ограничение расстояния камеры до сцены
