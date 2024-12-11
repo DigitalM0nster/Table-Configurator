@@ -1,0 +1,27 @@
+.configMenu {
+	justify-content: center;
+	position: fixed;
+	width: calc(100% - 104px - 2vw - 104px - 2vw);
+	bottom: 5vh;
+	left: 50%;
+	transform: translate(-50%, 0);
+	gap: 100px;
+	z-index: 1;
+}
+
+@media (max-width: 980px) {
+	.configMenu {
+		gap: 50px;
+	}
+}
+@media (max-width: 768px) {
+	.configMenu {
+		width: calc(100% - 5vw);
+	}
+}
+
+@media (max-width: 480px) {
+	.configMenu {
+		gap: 5vw;
+	}
+}

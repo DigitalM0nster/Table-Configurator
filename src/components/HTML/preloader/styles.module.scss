@@ -1,0 +1,49 @@
+.preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	flex-direction: column;
+	opacity: 0;
+	pointer-events: none;
+	transition: 0.5s;
+
+	&.active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+}
+
+.progressBar {
+	width: 80%;
+	height: 10px;
+	background: #11101a;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.progress {
+	height: 100%;
+	background: #182131;
+	transition: width 0.2s ease-in-out;
+}
+
+.progressTitle {
+	font-size: 32px;
+	letter-spacing: 1.5px;
+	text-transform: uppercase;
+	color: white;
+	margin: 0px 0px 5px 0px;
+}
+
+.progressText {
+	color: #fff;
+	font-size: 15px;
+}
