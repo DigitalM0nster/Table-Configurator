@@ -42,6 +42,13 @@ export default class TableScene {
 		this.controls.maxPolarAngle = Math.PI / 2.2; // Максимальный угол для предотвращения обзора снизу
 		this.controls.minPolarAngle = Math.PI / 4; // Минимальный угол для предотвращения взгляда сверху
 
+		// Ограничение расстояния камеры до сцены
+		this.controls.minDistance = 0.5; // Минимальное расстояние от центра
+		this.controls.maxDistance = 3; // Максимальное расстояние от центра
+
+		// Уменьшение чувствительности панорамирования
+		this.controls.panSpeed = 0.5;
+
 		// Ограничение панорамирования камеры
 		const panBounds = {
 			min: new THREE.Vector3(-1, 0, -1), // Минимальные координаты панорамирования
@@ -59,24 +66,29 @@ export default class TableScene {
 			);
 		});
 
-		// Ограничение расстояния камеры до сцены
-		this.controls.minDistance = 0.5; // Минимальное расстояние от центра
-		this.controls.maxDistance = 3; // Максимальное расстояние от центра
+		// Проверяем устройство
+		const isMobile = window.innerWidth <= 768;
 
-		// Установка начальной позиции сцены
-		this.scene.position.y = -0.1;
-		if (window.innerWidth <= 768) {
+		if (isMobile) {
+			// Отключаем панорамирование на мобильных устройствах
+			this.controls.enablePan = false;
+
+			// Настройки камеры для мобильных устройств
 			this.scene.position.y = -0.25;
 			this.controls.maxDistance = 5; // Максимальное расстояние от центра
 			this.camera.position.set(1.5, 1.5, 3.0);
-			this.camera.lookAt(this.center);
 		} else {
+			// Оставляем панорамирование включённым на компьютерах
+			this.controls.enablePan = true;
+
+			// Настройки камеры для компьютеров
 			this.scene.position.y = -0.1;
 			this.controls.maxDistance = 3; // Максимальное расстояние от центра
 			this.camera.position.set(1.25, 1, 1.35);
-			this.camera.lookAt(this.center);
 		}
 
+		// Устанавливаем целевой объект для камеры
+		this.camera.lookAt(this.center);
 		this.controls.update(); // Применение изменений
 	}
 
@@ -478,20 +490,17 @@ export default class TableScene {
 				}
 			});
 		}
-
-		// Обновление ограничений камеры.
-		// const panBoundary = Math.max(width / 2000, depth / 2000); // Расчет границы на основе размера стола
-		// this.controls.minPan.set(-panBoundary, 0, -panBoundary);
-		// this.controls.maxPan.set(panBoundary, 0, panBoundary);
 	}
 
 	onWindowResize() {
 		if (window.innerWidth <= 768) {
+			this.controls.enablePan = false;
 			this.scene.position.y = -0.25;
 			this.controls.maxDistance = 5; // Максимальное расстояние от центра
 			this.camera.position.set(1.25, 1, 1.35);
 			this.camera.lookAt(this.center);
 		} else {
+			this.controls.enablePan = true;
 			this.scene.position.y = -0.1;
 			this.controls.maxDistance = 3; // Максимальное расстояние от центра
 			this.camera.position.set(0.5, 1, 1); // Начальная позиция камеры
